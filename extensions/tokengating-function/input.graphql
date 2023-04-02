@@ -1,0 +1,33 @@
+query Input {
+  cart {
+    attribute(key: "_shopify_gate_context") {
+      value
+    }
+    lines {
+      quantity
+      merchandise {
+        __typename
+        ... on ProductVariant {
+          id
+          product {
+            id
+            gates {
+              id
+              configuration(appId: "fourth-web-ext") {
+                id
+                metafield(namespace: "fourth-web-ext", key: "reaction") {
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  discountNode {
+    metafield(namespace: "fourth-web-ext", key: "gate_configuration_id") {
+      value
+    }
+  }
+}
